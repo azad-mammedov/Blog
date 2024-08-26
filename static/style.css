@@ -76,6 +76,33 @@ article p {
     background: #555;
 }
 
+.messages {
+    margin-bottom: 20px;
+    position: relative; /* Needed for the absolute positioning of the close button */
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 1; /* Full opacity initially */
+    transition: opacity 0.5s ease-out; /* Smooth transition effect */
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.message.fade-out {
+    opacity: 0; /* Fade out effect */
+}
+
 footer {
     background: #333;
     color: #fff;

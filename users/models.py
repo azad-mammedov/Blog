@@ -1,5 +1,5 @@
 import datetime
-
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import (
     AbstractUser,
@@ -9,7 +9,7 @@ from django.contrib.auth.models import (
 
 class CustomUserManager(BaseUserManager):
     def _create_user(self, username, password, is_staff, is_superuser, **extra_fields):
-        now = datetime.datetime.now()
+        now = timezone.now()
         if not username:
             raise ValueError('username must be set')
         user = CustomUser(username = username,is_staff=is_staff,
