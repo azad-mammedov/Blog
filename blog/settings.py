@@ -29,15 +29,29 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+BUILTIN_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
 ]
+
+LOCAL_APPS = [
+    "home",
+    "users",
+    'custom_auth'
+]
+
+THIRD_PARTY_APPS = [
+    
+]
+
+
+
+INSTALLED_APPS = BUILTIN_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,10 +65,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'blog.urls'
 
+TEMPLATES_DIR  = [
+    BASE_DIR / app / 'templates' for app in LOCAL_APPS
+    ] + [ 'base_templates']
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': TEMPLATES_DIR,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +84,12 @@ TEMPLATES = [
         },
     },
 ]
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+STATIC_ROOT =  BASE_DIR / 'staticfiles'
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
@@ -79,6 +103,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTH_USER_MODEL = "users.CustomUser"
 
 
 # Password validation

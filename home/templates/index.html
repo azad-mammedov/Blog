@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - My Simple Blog{% endblock %}
+
+{% block content %}
+    
+        
+    
+    {% if blogs %}
+    <div id="blog-posts">
+        <!-- Uncomment the following lines to simulate having blog posts -->
+        <!--
+        <article>
+            <h2>Blog Post Title 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel erat vitae ligula facilisis luctus. Integer nec eros at libero posuere accumsan.</p>
+            <a href="" class="button">Read More</a>
+        </article>
+        <article>
+            <h2>Blog Post Title 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel erat vitae ligula facilisis luctus. Integer nec eros at libero posuere accumsan.</p>
+            <a href="" class="button">Read More</a>
+        </article>
+        -->
+    </div>
+    {% else %}
+    <div id="no-blogs">
+        <p>No blog posts available at the moment. Please check back later.</p>
+    </div>
+    {% endif %}
+
+
+    <div class="pagination" style="display: none;">
+        <a href="#">« Previous</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">Next »</a>
+    </div>
+{% endblock %}
