@@ -42,7 +42,8 @@ BUILTIN_APPS = [
 LOCAL_APPS = [
     "home",
     "users",
-    'custom_auth'
+    'custom_auth',
+    'post'
 ]
 
 THIRD_PARTY_APPS = [

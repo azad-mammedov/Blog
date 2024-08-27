@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block title %}Home - My Simple Blog{% endblock %}
 
@@ -8,19 +9,30 @@
     
     {% if blogs %}
     <div id="blog-posts">
-        <!-- Uncomment the following lines to simulate having blog posts -->
-        <!--
+        
+        
+        {% for post in page_obj %}
         <article>
-            <h2>Blog Post Title 1</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel erat vitae ligula facilisis luctus. Integer nec eros at libero posuere accumsan.</p>
-            <a href="" class="button">Read More</a>
-        </article>
-        <article>
-            <h2>Blog Post Title 2</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel erat vitae ligula facilisis luctus. Integer nec eros at libero posuere accumsan.</p>
-            <a href="" class="button">Read More</a>
-        </article>
-        -->
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content|truncate_with_dots:100 }}</p>
+            <a href="{% url 'post_detail' post.pk %}" class="button">Read More</a>
+        </article> 
+        {% endfor %}
+        <div class="pagination">
+            
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">« Previous</a>
+            {% endif %}
+                
+            <a href="#">{{ page_obj.number }}</a>
+            
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+            {% endif %}
+                
+        </div>
+            
+      
     </div>
     {% else %}
     <div id="no-blogs">
@@ -29,11 +41,5 @@
     {% endif %}
 
 
-    <div class="pagination" style="display: none;">
-        <a href="#">« Previous</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">Next »</a>
-    </div>
+    
 {% endblock %}

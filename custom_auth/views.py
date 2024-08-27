@@ -5,7 +5,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import RegistrationForm, LoginForm, CustomPasswordChangeForm
+
+from custom_auth.forms import RegistrationForm, LoginForm, CustomPasswordChangeForm
 
 
 class RegisterView(View):
