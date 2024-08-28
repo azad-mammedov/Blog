@@ -14,6 +14,7 @@
         {% for post in page_obj %}
         <article>
             <h2>{{ post.title }}</h2>
+            <p>Created by {{post.created_by.username}}</p>
             <p>{{ post.content|truncate_with_dots:100 }}</p>
             <a href="{% url 'post_detail' post.pk %}" class="button">Read More</a>
         </article> 

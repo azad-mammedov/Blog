@@ -11,7 +11,7 @@ class IndexView(View):
     template = 'index.html'
 
     def get(self, request: HttpRequest):
-        posts = Post.objects.all().order_by('-created_at')
+        posts = Post.objects.all().order_by('-pk')
         paginator = Paginator(posts , 3)
         page = request.GET.get('page','1')
         page_obj  = paginator.get_page(page)

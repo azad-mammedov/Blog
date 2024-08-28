@@ -8,9 +8,8 @@
         {{ form.as_p }}
 
         {% if is_author %}
-        <button type="submit" class = 'button'>Submit</button>
+        <button type="submit" class = 'button'>Update</button>
         <a href="{% url 'post_delete' post.pk %}"  class="button">Delete</a>
-            
         {% endif %}
             
         

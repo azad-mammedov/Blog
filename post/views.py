@@ -26,7 +26,7 @@ class PostCreateView(LoginRequiredMixin,View):
             return redirect('index')  
         return render(request, self.template, {'form': form})
 
-class PostUpdateView(LoginRequiredMixin,View):
+class PostDetailView(View):
     template = 'post_detail.html'
 
 
@@ -47,7 +47,8 @@ class PostUpdateView(LoginRequiredMixin,View):
 
         if form.is_valid():
             form.save()
-            return redirect('index')
+            messages.success(request , 'Post Updated Successfully')
+            return redirect('post_detail',pk)
         return render(request, self.template, {'form': form , 'is_author':is_author , 'post':post})
 
 class PostDeleteView(LoginRequiredMixin,View):
@@ -62,6 +63,6 @@ class PostDeleteView(LoginRequiredMixin,View):
         post = get_object_or_404(Post, pk=pk)
         if request.user != post.created_by:
             return HttpResponseForbidden('You are not allowed')
-        messages.success(request,'Post deleted Successfully')
         post.delete()
+        messages.success(request,'Post deleted Successfully')
         return redirect('index')

@@ -37,8 +37,13 @@ class CustomPasswordChangeForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
+        old_password = cleaned_data.get("old_password")
         new_password1 = cleaned_data.get("new_password1")
         new_password2 = cleaned_data.get("new_password2")
+        if old_password == new_password1:
+            self.add_error('old_password' , 'Old password and New password can not be same')
+
+
         if new_password1 and new_password2 and new_password1 != new_password2:
             self.add_error('new_password2', 'New passwords do not match.')
         return cleaned_data
