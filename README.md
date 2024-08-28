@@ -13,7 +13,7 @@ First, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/azad-mammedov/Blog.git
-cd blog
+cd Blog
 
 docker build -t blog . -f DockerFile
 docker run -d -p 8000:8000 blog
