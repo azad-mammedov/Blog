@@ -12,7 +12,7 @@ Before you begin, make sure you have the following installed on your system:
 First, clone the repository to your local machine:
 
 ```bash
-git clone 
+git clone https://github.com/azad-mammedov/Blog.git
 cd blog
 
 docker build -t blog .
